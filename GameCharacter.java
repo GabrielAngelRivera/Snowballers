@@ -11,6 +11,15 @@ public abstract class GameCharacter {
     // This is kept private so only this class can touch the raw number.
     private int score = 0;
 
+ /// CONSTRUCTOR 1: The "Snowman" Way (Advanced Sprite Sheets)
+    // Only sets coordinates. The child class handles its own image loading.
+    public GameCharacter(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // CONSTRUCTOR 2: The "Neapo" Way (Simple Single Images)
+    // Sets coordinates AND loads the old-school texture.
     public GameCharacter(float x, float y, String texturePath) {
         this.x = x;
         this.y = y;
@@ -28,6 +37,11 @@ public abstract class GameCharacter {
     public int getScore() {
         return score;
     }
+    
+ // Instantly resets the character's score to 0
+    public void resetScore() {
+        this.score = 0;
+    }
 
     // -------------------------------------
 
@@ -38,4 +52,6 @@ public abstract class GameCharacter {
             sprite.dispose();
         }
     }
-}
+
+		
+	}
