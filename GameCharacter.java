@@ -6,39 +6,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public abstract class GameCharacter {
     protected float x, y;
     protected Texture sprite;
-    
-    // PILLAR: ENCAPSULATION
-    // This is kept private so only this class can touch the raw number.
     private int score = 0;
 
- /// CONSTRUCTOR 1: The "Snowman" Way (Advanced Sprite Sheets)
-    // Only sets coordinates. The child class handles its own image loading.
+    // CONSTRUCTOR 1 (sprite-sheet): only sets coordinates; the child class handles its own image loading (Bowler)
     public GameCharacter(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    // CONSTRUCTOR 2: The "Neapo" Way (Simple Single Images)
-    // Sets coordinates AND loads the old-school texture.
+    
+    // CONSTRUCTOR 2 (single sprite/direct texture): sets coordinates AND loads the old school texture (Neapo)
     public GameCharacter(float x, float y, String texturePath) {
         this.x = x;
         this.y = y;
         this.sprite = new Texture(texturePath);
     }
 
-    // --- NEW TOOLS FOR THE GAME LOGIC ---
-
-    // Adds 1 to the score
+    // adds 1 to the score
     public void addPoint() {
-        score++;
+        score++; //increases score safely with no direct access
     }
 
-    // Returns the current score to whoever asks (like Main.java)
+    // returns the current score to whoever asks, but can NOT modify it (like Main.java)
     public int getScore() {
         return score;
     }
     
- // Instantly resets the character's score to 0
+ // instantly resets the character's score to 0
     public void resetScore() {
         this.score = 0;
     }
